@@ -103,9 +103,10 @@ async function run() {
     })
 
     app.put('/booking/:id', (req,res) => {
-        booking.updateOne({ _id: ObjectId(req.params.id) },{$set:{status:'approved'}},{upsert:false}).then(response=>{
-            res.send(response)
-        })
+        // booking.updateOne({ _id: ObjectId(req.params.id) },{$set:{status:'approved'}},{upsert:false}).then(response=>{
+        //     res.send(response)
+        // })
+        res.send(req.params)
     })
 
     app.post('/booking', (req,res) => {
