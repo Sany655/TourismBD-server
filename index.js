@@ -12,11 +12,11 @@ app.use(cors())
 app.use(express.json())
 
 async function run() {
-    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.e2cer.mongodb.net/tourismbd?retryWrites=true&w=majority`;
+    const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.e2cer.mongodb.net/${process.env.DB}?retryWrites=true&w=majority`;
     const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
     await client.connect()
     console.log('mongo ready');
-    const db = client.db('tourismbd');
+    const db = client.db(process.env.DB);
 
     // place api 
     const place = db.collection('place');
@@ -117,5 +117,5 @@ async function run() {
 run().catch(console.dir)
 
 app.listen(port, () => {
-    console.log('Assignment 11');
+    console.log('http://localhost:'+port);
 })
